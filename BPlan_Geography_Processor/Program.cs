@@ -1,4 +1,5 @@
 ﻿using ConsoleMenu;
+using System.Diagnostics;
 
 namespace BPlan_Geography_Processor
 {
@@ -6,6 +7,8 @@ namespace BPlan_Geography_Processor
     {
         static void Main(string[] args)
         {
+            ImportData();
+
             string[] mainMenuItems = new string[] { "Check Location Definitions", "Build TLK Path", "Download Data File", "Exit"};
 
             Menu mainMenu = new Menu(mainMenuItems, "BPlan Geography Data Processor");
@@ -15,7 +18,7 @@ namespace BPlan_Geography_Processor
                 case 1:
                     break;
                 case 2:
-                    break; 
+                    break;
                 case 3:
                     break;
                 case 4:
@@ -25,7 +28,37 @@ namespace BPlan_Geography_Processor
                     break;
             }
         }
-    internal class LocationRecords(string rawRecord)
+
+        static void ImportData()
+        {
+            string Line, RecordType;
+            List<string> RawLocationRecords = new List<string>();
+            List<string> RawTimingRecords = new List<string>();
+
+            StreamReader sr = new StreamReader("data.txt");
+
+            while (sr.EndOfStream) 
+            { 
+                Line = sr.ReadLine();
+
+                RecordType = new string(Line[0].ToString() + Line[1].ToString() + Line[2].ToString());
+
+                if (RecordType == "LOC")
+                {
+                    Debug.WriteLine("Location record added");
+                    RawLocationRecords.Add(Line);
+                } else if (RecordType == "TLK")
+                {
+                    Debug.WriteLine("Timing record added");
+                    RawTimingRecords.Add(Line);
+                } else
+                {
+                    Debug.WriteLine("Record type {0} skipped.", RecordType);
+                }
+            }
+        }
+    }
+
     internal class LocationRecord(string rawRecords)
     {
         private string RawRecords = rawRecords;
