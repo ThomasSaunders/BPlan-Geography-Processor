@@ -36,62 +36,47 @@ namespace BPlan_Geography_Processor
             List<string> RawLocationRecords = new List<string>();
             List<string> RawTimingRecords = new List<string>();
 
-            // StreamReader sr = new StreamReader("data.txt");
+            StreamReader sr = new StreamReader("data.txt");
 
             string[] RawData = File.ReadAllLines("data.txt");
 
-            ProgressBar progressBar = new ProgressBar("Reading Data", RawData.Length);
-
-            for (int i = 0; i < RawData.Length; i++) 
+            while (!sr.EndOfStream)
             {
-                progressBar.printProgressBar(i);
-
-                Line = RawData[i];
-
-                RecordType = new string(Line[0].ToString() + Line[1].ToString() + Line[2].ToString());
-
-                if (RecordType == "LOC")
-                {
-                    Debug.WriteLine("Location record added");
-                    RawLocationRecords.Add(Line);
-                }
-                else if (RecordType == "TLK")
-                {
-                    Debug.WriteLine("Timing record added");
-                    RawTimingRecords.Add(Line);
-                }
-                else
-                {
-                    Debug.WriteLine("Record type {0} skipped.", RecordType);
-                }
-
-                Thread.Sleep(10);
-            }
-
-/*            while (!sr.EndOfStream) 
-            { 
                 Line = sr.ReadLine();
 
                 RecordType = new string(Line[0].ToString() + Line[1].ToString() + Line[2].ToString());
 
                 if (RecordType == "LOC")
                 {
-                    Debug.WriteLine("Location record added");
+                    //Debug.WriteLine("Location record added");
                     RawLocationRecords.Add(Line);
-                } else if (RecordType == "TLK")
+                }
+                else if (RecordType == "TLK")
                 {
-                    Debug.WriteLine("Timing record added");
+                    //Debug.WriteLine("Timing record added");
                     RawTimingRecords.Add(Line);
-                } else
+                }
+                else
                 {
                     Debug.WriteLine("Record type {0} skipped.", RecordType);
                 }
             }
 
-            sr.Close();*/
+            sr.Close();
 
             Debug.WriteLine("Records imported");
 
+            Console.Clear();
+
+            Console.WriteLine("BPlane Geography Data Processor");
+            Console.WriteLine("The Location Data is now being processed.");
+
+            Console.Clear();
+
+            Console.WriteLine("BPlane Geography Data Processor");
+            Console.WriteLine("The timing data is now being processed.");
+
+            Console.Clear();
         }
     }
 
