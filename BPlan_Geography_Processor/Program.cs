@@ -23,5 +23,13 @@ namespace BPlan_Geography_Processor
                     break;
             }
         }
+    internal class LocationRecords(string rawRecord)
+    {
+        private string RawRecord = rawRecord;
+        public string LocationCode { get; }
+        public string LocationName { get; }
+        public string TimingPointType {  get; }
+        public int StationNumberCode {  get; }
+
     }
 }
