@@ -6,7 +6,7 @@ namespace BPlan_Geography_Processor
     {
         static void Main(string[] args)
         {
-            string[] mainMenuItems = new string[] { "Check Location Definitions", "Build TLK Path", "Exit"};
+            string[] mainMenuItems = new string[] { "Check Location Definitions", "Build TLK Path", "Download Data File", "Exit"};
 
             Menu mainMenu = new Menu(mainMenuItems, "BPlan Geography Data Processor");
 
@@ -17,6 +17,8 @@ namespace BPlan_Geography_Processor
                 case 2:
                     break; 
                 case 3:
+                    break;
+                case 4:
                     Environment.Exit(0);
                     break;
                 default: 
