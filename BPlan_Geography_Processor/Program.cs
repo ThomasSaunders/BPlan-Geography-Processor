@@ -1,4 +1,6 @@
-﻿namespace BPlan_Geography_Processor
+﻿using ConsoleMenu;
+
+namespace BPlan_Geography_Processor
 {
     internal class Program
     {
