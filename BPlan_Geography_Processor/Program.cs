@@ -6,11 +6,16 @@ namespace BPlan_Geography_Processor
 {
     internal class Program
     {
+        public static List<LocationRecord> LocationRecords = new List<LocationRecord>();
+
         static void Main(string[] args)
         {
             ImportData();
 
             string[] mainMenuItems = new string[] { "Check Location Definitions", "Build TLK Path", "Download Data File", "Exit"};
+
+            // This list is not really needed, it is purely here for debug purposes to check the contents.
+            // List<LocationRecord> records = LocationRecords;
 
             Menu mainMenu = new Menu(mainMenuItems, "BPlan Geography Data Processor");
 
