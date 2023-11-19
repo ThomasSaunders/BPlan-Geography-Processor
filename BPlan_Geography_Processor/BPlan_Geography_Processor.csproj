@@ -11,6 +11,9 @@
     <Reference Include="ConsoleMenu">
       <HintPath>ConsoleMenu.dll</HintPath>
     </Reference>
+    <Reference Include="Progress_Bar">
+      <HintPath>..\..\Progress_Bar\Progress_Bar\bin\Debug\Progress_Bar.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
