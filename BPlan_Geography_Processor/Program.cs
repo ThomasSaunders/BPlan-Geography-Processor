@@ -26,8 +26,9 @@ namespace BPlan_Geography_Processor
             }
         }
     internal class LocationRecords(string rawRecord)
+    internal class LocationRecord(string rawRecords)
     {
-        private string RawRecord = rawRecord;
+        private string RawRecords = rawRecords;
         public string LocationCode { get; }
         public string LocationName { get; }
         public string TimingPointType {  get; }
