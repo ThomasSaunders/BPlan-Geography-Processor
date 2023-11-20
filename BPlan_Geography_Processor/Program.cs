@@ -1,5 +1,4 @@
 ﻿using ConsoleMenu;
-using System.Diagnostics;
 
 namespace BPlan_Geography_Processor
 {
@@ -55,23 +54,15 @@ namespace BPlan_Geography_Processor
 
                 if (RecordType == "LOC")
                 {
-                    //Debug.WriteLine("Location record added");
                     RawLocationRecords.Add(Line);
                 }
                 else if (RecordType == "TLK")
                 {
-                    //Debug.WriteLine("Timing record added");
                     RawTimingRecords.Add(Line);
-                }
-                else
-                {
-                    Debug.WriteLine("Record type {0} skipped.", RecordType);
                 }
             }
 
             sr.Close();
-
-            Debug.WriteLine("Records imported");
 
             Console.WriteLine("The Location Data is now being processed.");
 
