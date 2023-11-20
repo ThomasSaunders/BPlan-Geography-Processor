@@ -6,6 +6,7 @@ namespace BPlan_Geography_Processor
     internal class Program
     {       
         public static List<LocationRecord> LocationRecords = new List<LocationRecord>();
+        public static List<TimingRecord> TimingRecords = new List<TimingRecord>();
 
         static void Main(string[] args)
         {
@@ -15,6 +16,7 @@ namespace BPlan_Geography_Processor
 
             // This list is not really needed, it is purely here for debug purposes to check the contents.
             // List<LocationRecord> records = LocationRecords;
+            // List<TimingRecord> records = TimingRecords;
 
             Menu mainMenu = new Menu(mainMenuItems, "BPlan Geography Data Processor");
 
@@ -83,6 +85,17 @@ namespace BPlan_Geography_Processor
 
             Console.WriteLine("The timing data is now being processed.");
 
+            foreach (string RawRecord in RawTimingRecords)
+            {
+                TimingRecord Record = new TimingRecord(RawRecord);
+                Record.ProcessTimingRecord();
+
+                if (Record.RunningCodeLine.ToUpper() != "BUS")
+                {
+                    TimingRecords.Add(Record);
+                }
+            }
+
             Thread.Sleep(1000);
             Console.Clear();
         }
@@ -103,6 +116,31 @@ namespace BPlan_Geography_Processor
             LocationName = SplitRecords[3];
             TimingPointType = SplitRecords[8];
             StationNumberCode = SplitRecords[10];
+        }
+    }
+
+    internal class TimingRecord(string rawRecord)
+    {
+        public string OriginLocation { get; set; }
+        public string DestinationLocation { get; set; }
+        public string RunningCodeLine { get; set; }
+        public string TractionType { get; set; }
+        public string TrailingLoad { get; set; }
+        public string EntrySpeed { get; set; }
+        public string ExitSpeed { get; set; }
+        public string SectionalRunningTime { get; set; }
+        private string[] SplitRecords = rawRecord.Split('\t');
+
+        public void ProcessTimingRecord()
+        {
+            OriginLocation = SplitRecords[2];
+            DestinationLocation = SplitRecords[3];
+            RunningCodeLine = SplitRecords[4];
+            TractionType = SplitRecords[5];
+            TrailingLoad = SplitRecords[6];
+            EntrySpeed = SplitRecords[9];
+            ExitSpeed = SplitRecords[10];
+            SectionalRunningTime = SplitRecords[13];
         }
     }
 }
