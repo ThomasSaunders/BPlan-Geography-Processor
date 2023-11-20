@@ -43,7 +43,8 @@ namespace BPlan_Geography_Processor
 
             StreamReader sr = new StreamReader("data.txt");
 
-            string[] RawData = File.ReadAllLines("data.txt");
+            Console.WriteLine("BPlane Geography Data Processor");
+            Console.WriteLine("The data is currently being imported");
 
             while (!sr.EndOfStream)
             {
@@ -71,27 +72,38 @@ namespace BPlan_Geography_Processor
 
             Debug.WriteLine("Records imported");
 
-            Console.Clear();
-
-            Console.WriteLine("BPlane Geography Data Processor");
             Console.WriteLine("The Location Data is now being processed.");
 
-            Console.Clear();
+            foreach (string RawRecord in RawLocationRecords) 
+            { 
+                LocationRecord Record = new LocationRecord(RawRecord);
+                Record.ProcessLocationRecord();
 
-            Console.WriteLine("BPlane Geography Data Processor");
+                LocationRecords.Add(Record);
+            }
+
             Console.WriteLine("The timing data is now being processed.");
 
+            Thread.Sleep(1000);
             Console.Clear();
         }
     }
 
-    internal class LocationRecord(string rawRecords)
+    internal class LocationRecord(string rawRecord)
     {
-        private string RawRecords = rawRecords;
-        public string LocationCode { get; }
-        public string LocationName { get; }
-        public string TimingPointType {  get; }
-        public int StationNumberCode {  get; }
+        public string LocationCode { get; set; }
+        public string LocationName { get; set; }
+        public string TimingPointType { get; set; }
+        public string StationNumberCode { get; set; }
 
+        private string[] SplitRecords = rawRecord.Split('\t');
+
+        public void ProcessLocationRecord()
+        {
+            LocationCode = SplitRecords[2];
+            LocationName = SplitRecords[3];
+            TimingPointType = SplitRecords[8];
+            StationNumberCode = SplitRecords[10];
+        }
     }
 }
