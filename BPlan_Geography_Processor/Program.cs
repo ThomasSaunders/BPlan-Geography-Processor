@@ -1,11 +1,10 @@
 ﻿using ConsoleMenu;
 using System.Diagnostics;
-using Progress_Bar;
 
 namespace BPlan_Geography_Processor
 {
     internal class Program
-    {
+    {       
         public static List<LocationRecord> LocationRecords = new List<LocationRecord>();
 
         static void Main(string[] args)
